@@ -2,6 +2,8 @@ import config from "./config.js";
 import buildProductsModel from "./buildProductsModel.js";
 import { productTemplate } from "./templates/product.js";
 
+// MODEL CREATION
+
 var products = buildProductsModel(config);
 
 // DOM CREATION
