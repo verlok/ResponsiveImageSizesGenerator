@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Responsive Image Sizes Generator</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>Responsive Image Sizes Generator</h1>
+			</header>
+			<main>
+				<h2>Product listing page</h2>
+				<ul class="products">
+					<li>
+						<img
+							src="https://via.placeholder.com/305"
+							srcset="
+								https://via.placeholder.com/305?text=01-305w.jpg 305w,
+								https://via.placeholder.com/610?text=01-610w.jpg 610w
+							"
+							sizes="(min-width: 1280px) 305px, 50vw"
+							alt="Image 01"
+						/>
+						<div class="title">Product 01</div>
+					</li>
+				</ul>
+			</main>
+			<footer>
+				<p>
+					A web tool by
+					<a href="https://www.andreaverlicchi.eu"
+						>Andrea Verlicchi</a
+					>
+					::
+					<a
+						href="https://github.com/verlok/ResponsiveImageSizesGenerator"
+						>Repo and source</a
+					>
+					on GitHub
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
