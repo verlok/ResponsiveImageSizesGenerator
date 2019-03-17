@@ -1,0 +1,14 @@
+/* Font face! */
+
+@font-face {
+	font-family: "Museo Slab W01 700";
+	src: url("../fonts/2ac411c9-defd-4f5a-90b0-7179cafd27f4.woff2")
+			format("woff2"),
+		url("../fonts/2ac411c9-defd-4f5a-90b0-7179cafd27f4.woff") format("woff"),
+		url("../fonts/0c52b397-59d0-4df4-aa7c-06ac915a9f66.ttf")
+			format("truetype");
+}
+
+body {
+	font-family: "Museo Slab W01 700", serif;
+}

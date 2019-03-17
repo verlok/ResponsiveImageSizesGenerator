@@ -1,0 +1,13 @@
+/* Hiding images without a source or srcset attribute (in case we use lazy loading) */
+
+img:not([srcset]):not([src]) {
+	visibility: hidden;
+}
+
+/* Stretch image and remove their margin at the bottom */
+
+.products img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
