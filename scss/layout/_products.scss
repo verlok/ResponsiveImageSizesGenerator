@@ -1,14 +1,31 @@
-/* Product list style reset */
+/* Product list style  */
 
 .products {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+
+	display: flex;
+	flex-wrap: wrap;
+
+	img {
+		width: 100%;
+	}
+
+	.title {
+		text-align: center;
+		text-transform: uppercase;
+		margin: 1em 0;
+		font-size: 14px;
+	}
 }
 
-.products .title {
-	text-align: center;
-	text-transform: uppercase;
-	margin: 1em 0;
-	font-size: 14px;
+.product {
+	width: 50%;
+	@media (min-width: 768px) {
+		width: 33.333%;
+	}
+	@media (min-width: 1024px) {
+		width: 25%;
+	}
 }

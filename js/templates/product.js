@@ -1,4 +1,4 @@
-export const productTemplate = product => `<li>
+export const productTemplate = product => `<li class="product">
     <img
         src="https://via.placeholder.com/305"
         srcset="

@@ -243,11 +243,20 @@ header {
   padding: 0 20px;
 }
 
-/* Product list style reset */
+/* Product list style  */
 .products {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.products img {
+  width: 100%;
 }
 
 .products .title {
@@ -255,6 +264,22 @@ header {
   text-transform: uppercase;
   margin: 1em 0;
   font-size: 14px;
+}
+
+.product {
+  width: 50%;
+}
+
+@media (min-width: 768px) {
+  .product {
+    width: 33.333%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product {
+    width: 25%;
+  }
 }
 
 footer {
@@ -276,7 +301,6 @@ img:not([srcset]):not([src]) {
 /* Stretch image and remove their margin at the bottom */
 .products img {
   display: block;
-  width: 100%;
   height: auto;
 }
 /*# sourceMappingURL=style.css.map */
