@@ -1,8 +1,8 @@
 import config from "./config.js";
-import productsModelBuilder from "./productsModelBuilder.js";
+import buildProductsModel from "./buildProductsModel.js";
 import { productTemplate } from "./templates/product.js";
 
-var products = productsModelBuilder(config);
+var products = buildProductsModel(config);
 
 // DOM CREATION
 
