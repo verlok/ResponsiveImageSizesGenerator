@@ -1,0 +1,14 @@
+/* Product list style reset */
+
+.products {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.products .title {
+	text-align: center;
+	text-transform: uppercase;
+	margin: 1em 0;
+	font-size: 14px;
+}

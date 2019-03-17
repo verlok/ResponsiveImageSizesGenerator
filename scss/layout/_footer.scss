@@ -1,0 +1,9 @@
+footer {
+	padding: 10px 20px;
+	background: black;
+	color: white;
+	text-align: center;
+	a {
+		color: lighten($red, 20);
+	}
+}

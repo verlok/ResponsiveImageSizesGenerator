@@ -1,7 +1,9 @@
 /* NORMALIZE */
 
+@import "variables.scss";
 @import "normalize.scss";
-@import "boxModelBorderBox.scss";
+@import "borderBox.scss";
 @import "fonts.scss";
+@import "type";
 @import "layout.scss";
 @import "imgTricks.scss";
