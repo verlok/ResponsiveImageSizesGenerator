@@ -1,8 +1,29 @@
+const getViewportColumnsMap = config => {
+	var ret = {};
+	let mediaIndex = 0;
+	let viewportIndex = 0;
+
+	/// TODO: GENERATE MAP
+
+	return {
+		320: 2,
+		375: 2,
+		414: 2,
+		768: 3,
+		1024: 4,
+		1280: 4,
+		1366: 4,
+		1440: 4
+	};
+};
+
 const getCalculatedImagesWidths = config => {
+	var viewportColumnsMap = getViewportColumnsMap(config);
 	var imageWidths = config.viewportsToOptimizeFor
 		.map(viewport =>
 			Math.round(
-				(viewport.width / viewport.columns) * viewport.pixelDensity
+				(viewport.width / viewportColumnsMap[viewport.width]) *
+					viewport.pixelDensity
 			)
 		)
 		.sort();
