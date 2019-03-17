@@ -31,4 +31,6 @@ It will be possible to easily copy the HTML and the CSS in order to use it on yo
 
 ## Settings (UI)
 
+- Number of images to generate
 - Stretched images (blurry images) / Optimized image dimensions (crisper images)
+- Use webP
