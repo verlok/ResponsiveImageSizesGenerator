@@ -20,17 +20,21 @@ const getViewportColumnsMap = config => {
 const getSizes_media = mediaQuery =>
 	mediaQuery.minWidth ? `(min-width: ${mediaQuery.minWidth})` : "";
 
-const getSizes_vw = mediaQuery =>
-	mediaQuery.columns ? `${100 / mediaQuery.columns}vw` : "100vw";
+const getSizes_vw = mediaQuery => {
+	if (!mediaQuery.columns) return "100vw";
+	const percentage = 100 / mediaQuery.columns;
+	const vwValue = Math.ceil(percentage * 100) / 100;
+	return vwValue + "vw";
+};
 
 const getSizes = config => {
-	var ret = [];
-	config.media
+	return config.media
+		.slice()
 		.reverse()
-		.forEach(mediaQuery =>
-			ret.push(getSizes_media(mediaQuery) + " " + getSizes_vw(mediaQuery))
+		.map(
+			mediaQuery =>
+				getSizes_media(mediaQuery) + " " + getSizes_vw(mediaQuery)
 		);
-	return ret.join();
 };
 
 const getCalculatedImagesWidths = config => {
@@ -63,11 +67,11 @@ const getSrcSet = (position, widths, imageRatio) => {
 		.join();
 };
 
-const getSrc = (position, widths) => {
+const getSrc = (position, widths, imageRatio) => {
 	const width = widths[widths.length - 1];
 	const descriptor = width + "w";
 	const text = position + "-" + descriptor;
-	return getImageUrl(width, text);
+	return getImageUrl(width, imageRatio, text);
 };
 
 export default config => {
@@ -78,7 +82,7 @@ export default config => {
 	for (let i = 0; i < config.numberOfProducts; i++) {
 		products.push({
 			alt: "Product " + (i + 1) + " image",
-			src: getSrc(i + 1, imagesWidths),
+			src: getSrc(i + 1, imagesWidths, config.imageRatio),
 			srcset: getSrcSet(i + 1, imagesWidths, config.imageRatio),
 			sizes: sizes,
 			name: "Product " + (i + 1)
