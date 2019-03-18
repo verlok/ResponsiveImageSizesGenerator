@@ -1,15 +1,21 @@
 const getViewportColumnsMap = config => {
 	var ret = {};
 	var m = 0;
-	var v = 0;
 	const media = config.media;
 	const vports = config.viewportsToOptimizeFor;
-	var nextTick = media[m + 1].minWidth;
+	var nextMedia, nextTick;
+
+	// DEDUPE
+	nextMedia = media[m + 1];
+	nextTick = nextMedia ? nextMedia.minWidth : 99999;
 
 	vports.forEach(vport => {
 		if (vport.width >= nextTick) {
 			m += 1;
-			nextTick = media[m + 1] ? media[m + 1].minWidth : 9999;
+
+			// DEDUPE
+			nextMedia = media[m + 1];
+			nextTick = nextMedia ? nextMedia.minWidth : 99999;
 		}
 		ret[vport.width] = media[m].columns;
 	});
