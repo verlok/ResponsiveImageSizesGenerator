@@ -75,7 +75,6 @@ export default config => {
 	var products = [];
 	var imagesWidths = getCalculatedImagesWidths(config);
 	var sizes = getSizes(config);
-	debugger;
 
 	for (let i = 0; i < config.numberOfProducts; i++) {
 		products.push({
