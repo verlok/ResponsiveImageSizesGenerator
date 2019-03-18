@@ -1,23 +1,23 @@
+const getNextMqMinWidth = (media, m) => {
+	var nextMedia = media[m + 1];
+	if (!nextMedia) return 99999;
+	return nextMedia.minWidth;
+};
+
 const getViewportColumnsMap = config => {
-	var ret = {};
-	var m = 0;
 	const media = config.media;
 	const vports = config.viewportsToOptimizeFor;
-	var nextMedia, nextTick;
+	var mqIndex = 0;
+	var nextTick;
+	var ret = {};
 
-	// DEDUPE
-	nextMedia = media[m + 1];
-	nextTick = nextMedia ? nextMedia.minWidth : 99999;
-
+	nextTick = getNextMqMinWidth(media, mqIndex);
 	vports.forEach(vport => {
 		if (vport.width >= nextTick) {
-			m += 1;
-
-			// DEDUPE
-			nextMedia = media[m + 1];
-			nextTick = nextMedia ? nextMedia.minWidth : 99999;
+			mqIndex += 1;
+			nextTick = getNextMqMinWidth(media, mqIndex);
 		}
-		ret[vport.width] = media[m].columns;
+		ret[vport.width] = media[mqIndex].columns;
 	});
 
 	console.log(ret);
