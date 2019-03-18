@@ -20,7 +20,6 @@ const getViewportColumnsMap = config => {
 		ret[vport.width] = media[mqIndex].columns;
 	});
 
-	console.log(ret);
 	return ret;
 };
 
@@ -95,8 +94,6 @@ export default config => {
 			name: "Product " + (i + 1)
 		});
 	}
-
-	console.log(products);
 
 	return products;
 };
