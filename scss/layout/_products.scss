@@ -19,13 +19,3 @@
 		font-size: 14px;
 	}
 }
-
-.product {
-	width: 50%;
-	@media (min-width: 768px) {
-		width: 33.333%;
-	}
-	@media (min-width: 1024px) {
-		width: 25%;
-	}
-}
