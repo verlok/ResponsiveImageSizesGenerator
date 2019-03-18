@@ -4,28 +4,31 @@ import { productTemplate } from "./templates/product.js";
 
 // MODEL CREATION
 
-var products = buildProductsModel(config);
+const products = buildProductsModel(config);
 
 // DOM CREATION
 
-var $products = document.querySelector(".products");
-$products.innerHTML = products.reduce((previousHtml, product) => {
-	return previousHtml + productTemplate(product);
-}, "");
+const $products = document.querySelector(".products");
+$products.innerHTML = products.reduce(
+	(previousHtml, product) => previousHtml + "\n" + productTemplate(product),
+	""
+);
 
 // STYLE CREATION
 
-var $stylesheet = document.getElementById("generatedStylesheet");
-$stylesheet.innerHTML = `.product {
-	width: 50%;
-}
-@media (min-width: 768px) {
-	.product {
-		width: 33.333%;
-	}
-}
-@media (min-width: 1024px) {
-	.product {
-		width: 25%;
-	}
+const $stylesheet = document.getElementById("generatedStylesheet");
+const styleTemplate = widthPercent => `.product {
+	width: ${widthPercent}%;
 }`;
+const mediaTemplate = mediaQ => {
+	const { minWidth, columns } = mediaQ;
+	const compiledStyleTemplate = styleTemplate(100 / columns);
+	return minWidth
+		? `@media (min-width: ${minWidth}px) {${compiledStyleTemplate}}`
+		: compiledStyleTemplate;
+};
+
+$stylesheet.innerHTML = config.media.reduce(
+	(previousHtml, mediaQ) => previousHtml + "\n" + mediaTemplate(mediaQ),
+	""
+);
