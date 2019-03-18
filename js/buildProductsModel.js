@@ -1,24 +1,25 @@
 const getViewportColumnsMap = config => {
 	var ret = {};
-	let mediaIndex = 0;
-	let viewportIndex = 0;
+	var m = 0;
+	var v = 0;
+	const media = config.media;
+	const vports = config.viewportsToOptimizeFor;
+	var nextTick = media[m + 1].minWidth;
 
-	/// TODO: GENERATE MAP
+	while (vports[v]) {
+		if (vports[v].width >= nextTick) {
+			m += 1;
+			nextTick = media[m + 1] ? media[m + 1].minWidth : 9999;
+		}
+		ret[vports[v].width] = media[m].columns;
+		v += 1;
+	}
 
-	return {
-		320: 2,
-		375: 2,
-		414: 2,
-		768: 3,
-		1024: 4,
-		1280: 4,
-		1366: 4,
-		1440: 4
-	};
+	return ret;
 };
 
 const getSizes_media = mediaQuery =>
-	mediaQuery.minWidth ? `(min-width: ${mediaQuery.minWidth})` : "";
+	mediaQuery.minWidth ? `(min-width: ${mediaQuery.minWidth}px)` : "";
 
 const getSizes_vw = mediaQuery => {
 	if (!mediaQuery.columns) return "100vw";
