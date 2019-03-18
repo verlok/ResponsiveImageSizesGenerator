@@ -17,6 +17,22 @@ const getViewportColumnsMap = config => {
 	};
 };
 
+const getSizes_media = mediaQuery =>
+	mediaQuery.minWidth ? `(min-width: ${mediaQuery.minWidth})` : "";
+
+const getSizes_vw = mediaQuery =>
+	mediaQuery.columns ? `${100 / mediaQuery.columns}vw` : "100vw";
+
+const getSizes = config => {
+	var ret = [];
+	config.media
+		.reverse()
+		.forEach(mediaQuery =>
+			ret.push(getSizes_media(mediaQuery) + " " + getSizes_vw(mediaQuery))
+		);
+	return ret.join();
+};
+
 const getCalculatedImagesWidths = config => {
 	var viewportColumnsMap = getViewportColumnsMap(config);
 	var imageWidths = config.viewportsToOptimizeFor
@@ -45,7 +61,7 @@ const getSrcSet = (position, widths) => {
 			const text = position + "-" + descriptor;
 			return getImageUrl(width, text) + " " + descriptor;
 		})
-		.join(", ");
+		.join();
 };
 
 const getSrc = (position, widths) => {
@@ -58,12 +74,15 @@ const getSrc = (position, widths) => {
 export default config => {
 	var products = [];
 	var imagesWidths = getCalculatedImagesWidths(config);
+	var sizes = getSizes(config);
+	debugger;
 
 	for (let i = 0; i < config.numberOfProducts; i++) {
 		products.push({
 			alt: "Product " + (i + 1) + " image",
 			src: getSrc(i + 1, imagesWidths),
 			srcset: getSrcSet(i + 1, imagesWidths),
+			sizes: sizes,
 			name: "Product " + (i + 1)
 		});
 	}
