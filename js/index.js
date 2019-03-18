@@ -1,6 +1,7 @@
 import config from "./config.js";
 import buildProductsModel from "./buildProductsModel.js";
 import { productTemplate } from "./templates/product.js";
+import { mediaQueryTemplate } from "./templates/style.js";
 
 // MODEL CREATION
 
@@ -17,18 +18,7 @@ $products.innerHTML = products.reduce(
 // STYLE CREATION
 
 const $stylesheet = document.getElementById("generatedStylesheet");
-const styleTemplate = widthPercent => `.product {
-	width: ${widthPercent}%;
-}`;
-const mediaTemplate = mediaQ => {
-	const { minWidth, columns } = mediaQ;
-	const compiledStyleTemplate = styleTemplate(100 / columns);
-	return minWidth
-		? `@media (min-width: ${minWidth}px) {${compiledStyleTemplate}}`
-		: compiledStyleTemplate;
-};
-
 $stylesheet.innerHTML = config.media.reduce(
-	(previousHtml, mediaQ) => previousHtml + "\n" + mediaTemplate(mediaQ),
+	(previousHtml, mediaQ) => previousHtml + "\n" + mediaQueryTemplate(mediaQ),
 	""
 );
