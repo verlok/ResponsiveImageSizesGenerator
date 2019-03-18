@@ -1,5 +1,6 @@
 export default {
 	numberOfProducts: 20,
+	imageRatio: 0.78,
 	viewportsToOptimizeFor: [
 		{
 			name: "iPhone 5/SE",

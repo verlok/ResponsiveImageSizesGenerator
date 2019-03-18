@@ -21,7 +21,7 @@ It will be possible to easily copy the HTML and the CSS in order to use it on yo
   - Pixel density
 - List of media queries, for each one
   - Number of columns
-- Image ratio
+- Image size width/height ratio
 - Image slot padding
 
 (Only on version 2)
