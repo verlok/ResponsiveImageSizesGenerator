@@ -12,6 +12,9 @@ $stylesheet.innerHTML = getStylesheetHtml(config);
 const $products = document.querySelector(".products");
 $products.innerHTML = getProductsHtml(products);
 
+// Show page
+document.body.classList.remove("hide");
+
 const pageLL = new LazyLoad({
 	elements_selector: ".lazy"
 });
