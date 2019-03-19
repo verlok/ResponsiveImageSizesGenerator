@@ -254,15 +254,24 @@ header {
       flex-wrap: wrap;
 }
 
-.products img {
-  width: 100%;
-}
-
 .products .title {
   text-align: center;
   text-transform: uppercase;
   margin: 1em 0;
   font-size: 14px;
+}
+
+.product-images {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+
+.product-images img {
+  display: block;
+  height: auto;
+  width: 100%;
+  position: absolute;
 }
 
 footer {
@@ -279,11 +288,5 @@ footer a {
 /* Hiding images without a source or srcset attribute (in case we use lazy loading) */
 img:not([srcset]):not([src]) {
   visibility: hidden;
-}
-
-/* Stretch image and remove their margin at the bottom */
-.products img {
-  display: block;
-  height: auto;
 }
 /*# sourceMappingURL=style.css.map */

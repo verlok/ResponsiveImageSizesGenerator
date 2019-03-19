@@ -3,10 +3,3 @@
 img:not([srcset]):not([src]) {
 	visibility: hidden;
 }
-
-/* Stretch image and remove their margin at the bottom */
-
-.products img {
-	display: block;
-	height: auto;
-}
