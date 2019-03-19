@@ -1,5 +1,6 @@
 export default {
 	numberOfProducts: 20,
+	lazyFrom: 8,
 	imageRatio: 0.78,
 	viewportsToOptimizeFor: [
 		{

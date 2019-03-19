@@ -1,5 +1,5 @@
-export const productTemplate = (product, index) => {
-	const lazyProduct = index >= 8;
+export const productTemplate = (product, index, config) => {
+	const lazyProduct = index >= config.lazyFrom;
 	const lazyData = lazyProduct ? "data-" : "";
 	const lazyClass = lazyProduct ? "lazy" : "";
 
