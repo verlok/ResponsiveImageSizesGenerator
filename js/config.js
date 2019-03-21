@@ -67,6 +67,11 @@ export default {
 			pixelDensity: 1
 		},
 		{
+			name: "Laptop HiDpi",
+			width: 1280,
+			pixelDensity: 2
+		},
+		{
 			name: "iPad Pro landscape",
 			width: 1366,
 			pixelDensity: 2
