@@ -26,11 +26,22 @@ const getViewportColumnsMap = config => {
 const getSizes_media = mediaQuery =>
 	mediaQuery.minWidth ? `(min-width: ${mediaQuery.minWidth}px)` : "";
 
-const getSizes_vw = mediaQuery => {
-	if (!mediaQuery.columns) return "100vw";
+const getSize_vw = mediaQuery => {
 	const percentage = 100 / mediaQuery.columns;
 	const vwValue = Math.ceil(percentage * 100) / 100;
 	return vwValue + "vw";
+};
+
+const getSize_px = mediaQuery => {
+	if (!mediaQuery.columns) return "100%";
+	const pxValue = Math.ceil(mediaQuery.minWidth / mediaQuery.columns);
+	return pxValue + "px";
+};
+
+const getSize = mediaQuery => {
+	if (!mediaQuery.columns) return "100vw";
+	if (!mediaQuery.grow) return getSize_px(mediaQuery);
+	return getSize_vw(mediaQuery);
 };
 
 const getSizes = config => {
@@ -38,8 +49,7 @@ const getSizes = config => {
 		.slice()
 		.reverse()
 		.map(
-			mediaQuery =>
-				getSizes_media(mediaQuery) + " " + getSizes_vw(mediaQuery)
+			mediaQuery => getSizes_media(mediaQuery) + " " + getSize(mediaQuery)
 		);
 };
 

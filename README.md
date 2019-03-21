@@ -23,6 +23,7 @@ The "hard" configuration has to be placed in the `config.js` file and it's made 
 | numberOfProducts       | the number of product to show in the listing page                                  | `20`        |
 | lazyFrom               | the 0-based-index of the first image that needs to be loaded lazily                | `8`         |
 | imageRatio             | the width/height ratio of the images                                               | `0.78`      |
+| maxWidth               | The maximum width of the main page container                                       | `1280`      |
 | viewportsToOptimizeFor | an array of viewports you want your images to be optimized for                     | (see below) |
 | media                  | an array of media queries to change the number of colums you display you images in | (see below) |
 
@@ -40,16 +41,18 @@ Each object of the `viewportsToOptimizeFor` array should have the following prop
 
 Each object of the `media` array should have the following properties
 
-| value    | meaning                                          | example |
-| -------- | ------------------------------------------------ | ------- |
-| minWidth | the minimum width this media query is valid from | `1024`  |
-| columns  | the number of columns to display at media query  | `2`     |
+| value    | meaning                                                                      | example |
+| -------- | ---------------------------------------------------------------------------- | ------- |
+| minWidth | the minimum width this media query is valid from                             | `1024`  |
+| columns  | the number of columns to display at media query                              | `2`     |
+| grow     | boolean value to set if the images should stop growing over this media query | `false` |
 
-## TO DO in version 2
+## TO DO
 
+- Max container width: 
+  - did it with the "grow: false" in the last media query. Is there a better way?
+  - bug fix: find out why currently "max-width 1280 with 4 columns on retina" doesn't generate and exact srcset of 640px
 - Image slot padding
-- Image slot margin, if any
-- Max container width, if any
 
 ### Settings (UI)
 

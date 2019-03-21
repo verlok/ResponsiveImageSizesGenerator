@@ -2,6 +2,29 @@ export default {
 	numberOfProducts: 20,
 	lazyFrom: 8,
 	imageRatio: 0.78,
+	maxWidth: 1024,
+	media: [
+		{
+			minWidth: 0,
+			columns: 2,
+			grow: true
+		},
+		{
+			minWidth: 768,
+			columns: 3,
+			grow: true
+		},
+		{
+			minWidth: 1024,
+			columns: 4,
+			grow: true
+		},
+		{
+			minWidth: 1280,
+			columns: 4,
+			grow: false
+		}
+	],
 	viewportsToOptimizeFor: [
 		{
 			name: "iPhone 5/SE",
@@ -52,20 +75,6 @@ export default {
 			name: "Laptop HiDpi",
 			width: 1440,
 			pixelDensity: 2
-		}
-	],
-	media: [
-		{
-			minWidth: 0,
-			columns: 2
-		},
-		{
-			minWidth: 768,
-			columns: 3
-		},
-		{
-			minWidth: 1024,
-			columns: 4
 		}
 	]
 };

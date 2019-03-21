@@ -1,18 +1,15 @@
-import { mediaQueryTemplate } from "./templates/style.js";
-
-const productMediaQueries = mediaConfig =>
-	mediaConfig.reduce(
-		(previousHtml, mediaQ) =>
-			previousHtml + "\n" + mediaQueryTemplate(mediaQ),
-		""
-	);
-
-const productHoldHeight = config => {
-	return `.product-images {
-		padding-bottom: ${100 / config.imageRatio}%;
-	}`;
-};
+import {
+	productMediaQueries,
+	maxContainerWidth,
+	productHoldHeight
+} from "./templates/style.js";
 
 export default config => {
-	return productHoldHeight(config) + "\n" + productMediaQueries(config.media);
+	return (
+		maxContainerWidth(config) +
+		"\n" +
+		productHoldHeight(config) +
+		"\n" +
+		productMediaQueries(config.media)
+	);
 };
