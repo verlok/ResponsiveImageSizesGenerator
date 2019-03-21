@@ -49,10 +49,21 @@ Each object of the `media` array should have the following properties
 
 ## TO DO
 
-- Max container width: 
-  - did it with the "grow: false" in the last media query. Is there a better way?
-  - bug fix: find out why currently "max-width 1280 with 4 columns on retina" doesn't generate and exact srcset of 640px
-- Image slot padding
+### Max container width*
+
+Currently, to set a max container width, you should put "grow: false" in the last media query. 
+
+Remember that, in order to optimize for the max container width, you must put that width and pixelRatio in the "viewportsToOptimizeFor" configuration
+
+Is there a better way to do that?
+
+### Image slot padding
+
+Allow images to have internal paddings, to:
+
+- Generate the `.product` CSS
+- Optimize the `sizes`, subtracting the padding with a `calc()` 
+- Consider the padding in the srcset calculation
 
 ### Settings (UI)
 
