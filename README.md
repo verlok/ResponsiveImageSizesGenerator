@@ -49,13 +49,23 @@ Each object of the `media` array should have the following properties
 
 ## TO DO
 
-### Max container width*
+### Max container width
 
 Currently, to set a max container width, you should put "grow: false" in the last media query. 
 
 Remember that, in order to optimize for the max container width, you must put that width and pixelRatio in the "viewportsToOptimizeFor" configuration
 
 Is there a better way to do that?
+
+#### `<BRAINSTORMING>`
+
+Desiderata:
+
+- impostare CSS max-width nel .container -- _posso farlo anche con un setting statico_
+- fare in modo che le immagini siano ottimizzate sempre in px dopo una certa min-width, quindi avere qualcosa come `sizes="(min-width: 666) 320px"` -- _posso farlo con un setting statico?_
+- **NON** avere un nuovo elemento nel `srcset` per cui ottimizzare a quella viewport (questo va fatto comunque da `viewportsToOptimizeFor`)
+
+#### `</BRAINSTORMING>`
 
 ### Image slot padding
 
