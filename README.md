@@ -55,6 +55,11 @@ To set a max width to your container AND optimize your images for that size, you
 
 ## TO DO
 
+### Settings (UI)
+
+- Stretched images (blurry images) / Optimized image dimensions (crisper images)
+- Use webP
+
 ### Image slot padding
 
 Allow images to have internal paddings, to:
@@ -62,8 +67,3 @@ Allow images to have internal paddings, to:
 - Generate the `.product` CSS
 - Optimize the `sizes`, subtracting the padding with a `calc()` 
 - Consider the padding in the srcset calculation
-
-### Settings (UI)
-
-- Stretched images (blurry images) / Optimized image dimensions (crisper images)
-- Use webP
