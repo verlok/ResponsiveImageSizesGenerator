@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,iBAAiB;AAEjB,AAAA,SAAS,CAAC;EACT,WAAW,EAAE,UAAU;CACvB",
+    "sources": [
+        "../scss/layout/commands.scss"
+    ],
+    "names": [],
+    "file": "commands.css"
+}
