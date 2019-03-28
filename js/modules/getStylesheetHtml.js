@@ -2,7 +2,7 @@ import {
 	productMediaQueries,
 	maxContainerWidth,
 	productHoldHeight
-} from "./templates/style.js";
+} from "../templates/style.js";
 
 export default settings =>
 	maxContainerWidth(settings) +

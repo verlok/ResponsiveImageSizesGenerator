@@ -1,4 +1,4 @@
-import { productTemplate } from "./templates/product.js";
+import { productTemplate } from "../templates/product.js";
 
 export default (settings, products) => {
 	return products.reduce(

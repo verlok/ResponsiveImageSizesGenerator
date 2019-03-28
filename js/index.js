@@ -1,9 +1,9 @@
 import config from "/config.js";
-import buildProductsModel from "./buildProductsModel.js";
-import getProductsHtml from "./getProductsHtml.js";
-import getStylesheetHtml from "./getStylesheetHtml.js";
-import { watchForUiSettings, getMergedSettings } from "./uiSettings.js";
-import LazyLoad from "https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.5/dist/lazyload.esm.js";
+import buildProductsModel from "./modules/buildProductsModel.js";
+import getProductsHtml from "./modules/getProductsHtml.js";
+import getStylesheetHtml from "./modules/getStylesheetHtml.js";
+import { watchForUiSettings, getMergedSettings } from "./modules/uiSettings.js";
+import LazyLoad from "https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.6/dist/lazyload.esm.js";
 
 var settings = getMergedSettings(config);
 watchForUiSettings();
