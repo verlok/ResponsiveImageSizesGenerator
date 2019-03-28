@@ -2,10 +2,11 @@ import config from "/config.js";
 import buildProductsModel from "./buildProductsModel.js";
 import getProductsHtml from "./getProductsHtml.js";
 import getStylesheetHtml from "./getStylesheetHtml.js";
+import getUiSettings from "./getUiSettings.js";
 import LazyLoad from "https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.5/dist/lazyload.esm.js";
 
-var uiConfig = { flexible: false, webP: false };
-var settings = Object.assign({}, config, uiConfig);
+var uiSettings = getUiSettings();
+var settings = Object.assign({}, config, uiSettings);
 
 const $stylesheet = document.getElementById("generatedStylesheet");
 $stylesheet.innerHTML = getStylesheetHtml(settings);
