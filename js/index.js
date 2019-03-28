@@ -6,7 +6,10 @@ import { watchForUiSettings, getMergedSettings } from "./modules/uiSettings.js";
 import LazyLoad from "https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.6/dist/lazyload.esm.js";
 
 var settings = getMergedSettings(config);
-watchForUiSettings();
+watchForUiSettings(() => {
+	settings = getMergedSettings(config);
+	// TODO: Regenerate DOM
+});
 
 const $stylesheet = document.getElementById("generatedStylesheet");
 $stylesheet.innerHTML = getStylesheetHtml(settings);
