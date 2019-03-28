@@ -4,9 +4,9 @@ const getNextMqMinWidth = (media, m) => {
 	return nextMedia.minWidth;
 };
 
-const getViewportColumnsMap = config => {
-	const media = config.media;
-	const vports = config.viewportsToOptimizeFor;
+const getViewportColumnsMap = settings => {
+	const media = settings.media;
+	const vports = settings.viewportsToOptimizeFor;
 	var mqIndex = 0;
 	var nextTick;
 	var ret = {};
@@ -44,8 +44,8 @@ const getSize = mediaQuery => {
 	return getSize_vw(mediaQuery);
 };
 
-const getSizes = config => {
-	return config.media
+const getSizes = settings => {
+	return settings.media
 		.slice()
 		.reverse()
 		.map(
@@ -53,9 +53,9 @@ const getSizes = config => {
 		);
 };
 
-const getCalculatedImagesWidths = config => {
-	var viewportColumnsMap = getViewportColumnsMap(config);
-	var imageWidths = config.viewportsToOptimizeFor
+const getCalculatedImagesWidths = settings => {
+	var viewportColumnsMap = getViewportColumnsMap(settings);
+	var imageWidths = settings.viewportsToOptimizeFor
 		.map(viewport =>
 			Math.round(
 				(viewport.width / viewportColumnsMap[viewport.width]) *
@@ -90,16 +90,16 @@ const getSrc = (position, widths, imageRatio) => {
 	return getImageUrl(width, imageRatio, text);
 };
 
-export default config => {
+export default settings => {
 	var products = [];
-	var imagesWidths = getCalculatedImagesWidths(config);
-	var sizes = getSizes(config);
+	var imagesWidths = getCalculatedImagesWidths(settings);
+	var sizes = getSizes(settings);
 
-	for (let i = 0; i < config.numberOfProducts; i++) {
+	for (let i = 0; i < settings.numberOfProducts; i++) {
 		products.push({
 			alt: "Product " + (i + 1) + " image",
-			src: getSrc(i + 1, imagesWidths, config.imageRatio),
-			srcset: getSrcSet(i + 1, imagesWidths, config.imageRatio),
+			src: getSrc(i + 1, imagesWidths, settings.imageRatio),
+			srcset: getSrcSet(i + 1, imagesWidths, settings.imageRatio),
 			sizes: sizes,
 			name: "Product " + (i + 1)
 		});

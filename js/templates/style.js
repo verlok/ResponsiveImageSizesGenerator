@@ -1,22 +1,22 @@
 const productStyleTemplate = widthPercent => `.product {
 	width: ${widthPercent}%;
 }`;
-export const productMediaQueries = mediaConfig =>
-	mediaConfig.reduce(
+export const productMediaQueries = media =>
+	media.reduce(
 		(previousHtml, mediaQ) =>
 			previousHtml + "\n" + mediaQueryTemplate(mediaQ),
 		""
 	);
 
-export const productHoldHeight = config => {
+export const productHoldHeight = settings => {
 	return `.product-images {
-		padding-bottom: ${100 / config.imageRatio}%;
+		padding-bottom: ${100 / settings.imageRatio}%;
 	}`;
 };
 
-export const maxContainerWidth = config => {
+export const maxContainerWidth = settings => {
 	return `.container {
-		max-width: ${config.maxWidth}px;
+		max-width: ${settings.maxWidth}px;
 	}`;
 };
 const mediaQueryTemplate = mediaQ => {

@@ -4,9 +4,9 @@ import {
 	productHoldHeight
 } from "./templates/style.js";
 
-export default config =>
-	maxContainerWidth(config) +
+export default settings =>
+	maxContainerWidth(settings) +
 	"\n" +
-	productHoldHeight(config) +
+	productHoldHeight(settings) +
 	"\n" +
-	productMediaQueries(config.media);
+	productMediaQueries(settings.media);
