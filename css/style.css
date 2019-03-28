@@ -244,7 +244,7 @@ header {
 }
 
 /* UI Commands */
-.commands {
+#uiSettings {
   font-family: sans-serif;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -256,7 +256,7 @@ header {
 }
 
 @media (min-width: 480px) {
-  .commands {
+  #uiSettings {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -264,7 +264,7 @@ header {
   }
 }
 
-.commands fieldset {
+#uiSettings fieldset {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -272,8 +272,8 @@ header {
   margin: 0;
 }
 
-.commands input[type="radio"],
-.commands input[type="checkbox"] {
+#uiSettings input[type="radio"],
+#uiSettings input[type="checkbox"] {
   margin: 0.3em;
 }
 
