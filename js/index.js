@@ -13,10 +13,7 @@ const updatePage = () => {
 	lazyLoad.update();
 };
 
-watchForUiSettings(() => {
-	updatePage();
-});
-
+watchForUiSettings(updatePage);
 updatePage();
 
 // Show page
