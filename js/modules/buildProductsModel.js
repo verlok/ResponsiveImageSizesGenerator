@@ -68,17 +68,20 @@ const getCalculatedImagesWidths = settings => {
 
 const baseImageUrl = `https://via.placeholder.com`;
 
-const getImageUrl = (width, imageRatio, text) => {
+const getImageUrl = (width, imageRatio, text, useWebP) => {
+	const ext = useWebP ? "webp" : "jpg";
 	const height = Math.round(width / imageRatio);
-	return `${baseImageUrl}/${width}x${height}?text=${text}`;
+	return `${baseImageUrl}/${width}x${height}.${ext}?text=${text}`;
 };
 
-const getSrcSet = (position, widths, imageRatio) => {
+const getSrcSet = (position, widths, imageRatio, useWebP) => {
 	return widths
 		.map(width => {
 			const descriptor = width + "w";
 			const text = position + "-" + descriptor;
-			return getImageUrl(width, imageRatio, text) + " " + descriptor;
+			return (
+				getImageUrl(width, imageRatio, text, useWebP) + " " + descriptor
+			);
 		})
 		.join();
 };
@@ -99,7 +102,13 @@ export default settings => {
 		products.push({
 			alt: "Product " + (i + 1) + " image",
 			src: getSrc(i + 1, imagesWidths, settings.imageRatio),
-			srcset: getSrcSet(i + 1, imagesWidths, settings.imageRatio),
+			srcsetWebp: getSrcSet(
+				i + 1,
+				imagesWidths,
+				settings.imageRatio,
+				true
+			),
+			srcset: getSrcSet(i + 1, imagesWidths, settings.imageRatio, false),
 			sizes: sizes,
 			name: "Product " + (i + 1)
 		});

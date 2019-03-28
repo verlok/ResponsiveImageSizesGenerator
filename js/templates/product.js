@@ -10,7 +10,7 @@ const imageTemplate = (product, lazyData, lazyClass) => {
 const pictureTemplate = (product, lazyData, lazyClass) => {
 	return `<picture>
         <source type="image/webp" 
-            ${lazyData}srcset="${product.srcset}" 
+            ${lazyData}srcset="${product.srcsetWebp}" 
             ${lazyData}sizes="${product.sizes}">
         ${imageTemplate(product, lazyData, lazyClass)}
     </picture>`;
