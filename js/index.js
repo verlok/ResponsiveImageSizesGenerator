@@ -9,7 +9,7 @@ $stylesheet.innerHTML = getStylesheetHtml(config);
 
 const products = buildProductsModel(config);
 const $products = document.querySelector(".products");
-$products.innerHTML = getProductsHtml(products);
+$products.innerHTML = getProductsHtml(config, products);
 
 // Show page
 document.body.classList.remove("hide");
