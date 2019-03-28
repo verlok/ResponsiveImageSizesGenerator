@@ -4,12 +4,9 @@ import {
 	productHoldHeight
 } from "./templates/style.js";
 
-export default config => {
-	return (
-		maxContainerWidth(config) +
-		"\n" +
-		productHoldHeight(config) +
-		"\n" +
-		productMediaQueries(config.media)
-	);
-};
+export default config =>
+	maxContainerWidth(config) +
+	"\n" +
+	productHoldHeight(config) +
+	"\n" +
+	productMediaQueries(config.media);
