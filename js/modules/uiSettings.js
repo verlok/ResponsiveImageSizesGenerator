@@ -1,5 +1,9 @@
 const blurryEl = document.getElementById("blurry");
 const useWebPEl = document.getElementById("useWebP");
+const getUiSettings = () => ({
+	blurry: blurryEl.checked,
+	useWebP: useWebPEl.checked
+});
 var uiSettings = getUiSettings();
 
 export const watchForUiSettings = callback => {
@@ -10,11 +14,6 @@ export const watchForUiSettings = callback => {
 		callback();
 	});
 };
-
-const getUiSettings = () => ({
-	blurry: blurryEl.checked,
-	useWebP: useWebPEl.checked
-});
 
 export const getMergedSettings = config => {
 	return Object.assign({}, config, uiSettings);
