@@ -1,4 +1,4 @@
-import config from "./config.js";
+import config from "/config.js";
 import buildProductsModel from "./buildProductsModel.js";
 import getProductsHtml from "./getProductsHtml.js";
 import getStylesheetHtml from "./getStylesheetHtml.js";
