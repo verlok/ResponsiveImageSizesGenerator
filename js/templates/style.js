@@ -19,6 +19,11 @@ export const maxContainerWidth = settings => {
 		max-width: ${settings.maxWidth}px;
 	}`;
 };
+
+export const blurryImages = settings => {
+	return settings.blurry ? ".product-images img { width: 100% }" : "";
+};
+
 const mediaQueryTemplate = mediaQ => {
 	const { minWidth, columns } = mediaQ;
 	const compiledStyleTemplate = productStyleTemplate(100 / columns);

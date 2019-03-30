@@ -321,7 +321,6 @@ header {
 .product-images img {
   display: block;
   height: auto;
-  width: 100%;
   position: absolute;
 }
 
