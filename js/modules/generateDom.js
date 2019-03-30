@@ -9,5 +9,4 @@ export default settings => {
 	const products = buildProductsModel(settings);
 	$stylesheet.innerHTML = getStylesheetHtml(settings);
 	$products.innerHTML = getProductsHtml(settings, products);
-	console.log("DOM Generated");
 };
