@@ -1,29 +1,44 @@
-const imageTemplate = (product, lazyData, lazyClass) => {
-	return `<img class="${lazyClass}"
-        ${lazyData}src="${product.src}"
-        ${lazyData}srcset="${product.srcset}"
-        ${lazyData}sizes="${product.sizes}"
+const imageTemplate = (product, lazyProduct, lazyClass) => {
+	return lazyProduct
+		? `<img class="${lazyClass}"
+        src="${product.placeholderSrc}"
+        data-src="${product.src}"
+        data-srcset="${product.srcset}"
+        data-sizes="${product.sizes}"
+        alt="${product.alt}"
+    />`
+		: `<img class="${lazyClass}"
+        src="${product.src}"
+        srcset="${product.srcset}"
+        sizes="${product.sizes}"
         alt="${product.alt}"
     />`;
 };
 
-const pictureTemplate = (product, lazyData, lazyClass) => {
-	return `<picture>
+const pictureTemplate = (product, lazyProduct, lazyClass) => {
+	var img = imageTemplate(product, lazyProduct, lazyClass);
+	return lazyProduct
+		? `<picture>
         <source type="image/webp" 
-            ${lazyData}srcset="${product.srcsetWebp}" 
-            ${lazyData}sizes="${product.sizes}">
-        ${imageTemplate(product, lazyData, lazyClass)}
+            data-srcset="${product.srcsetWebp}" 
+            data-sizes="${product.sizes}">
+        ${img}
+    </picture>`
+		: `<picture>
+        <source type="image/webp" 
+            srcset="${product.srcsetWebp}" 
+            sizes="${product.sizes}">
+        ${img}
     </picture>`;
 };
 
 export const productTemplate = (product, index, settings) => {
 	const lazyProduct = index >= settings.lazyFrom;
-	const lazyData = lazyProduct ? "data-" : "";
-	const lazyClass = lazyProduct ? "lazy" : "";
+	const lazyClass = "lazy";
 
 	var imageDom = settings.useWebP
-		? pictureTemplate(product, lazyData, lazyClass)
-		: imageTemplate(product, lazyData, lazyClass);
+		? pictureTemplate(product, lazyProduct, lazyClass)
+		: imageTemplate(product, lazyProduct, lazyClass);
 
 	return `<li class="product">
     <div class="product-images">

@@ -1,3 +1,8 @@
+const getPlaceholderSvgSrc = (width, ratio) => {
+	var height = Math.round(width / ratio);
+	return `data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20${width}%20${height}'></svg>`;
+};
+
 const getNextMqMinWidth = (media, m) => {
 	var nextMedia = media[m + 1];
 	if (!nextMedia) return 99999;
@@ -119,13 +124,6 @@ export default settings => {
 		viewportColumnsMap
 	);
 
-	console.log(
-		"viewportColumnsMap",
-		viewportColumnsMap,
-		"imagesWidths",
-		imagesWidths
-	);
-
 	var sizes = settings.blurry
 		? getSizes_blurry(settings.media)
 		: getSizes_sharp(viewportColumnsMap);
@@ -133,6 +131,10 @@ export default settings => {
 	for (let i = 0; i < settings.numberOfProducts; i++) {
 		products.push({
 			alt: "Product " + (i + 1) + " image",
+			placeholderSrc: getPlaceholderSvgSrc(
+				imagesWidths[0],
+				settings.imageRatio
+			),
 			src: getSrc(i + 1, imagesWidths, settings.imageRatio),
 			srcsetWebp: getSrcSet(
 				i + 1,
