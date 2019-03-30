@@ -8,12 +8,6 @@ export const productMediaQueries = media =>
 		""
 	);
 
-export const productHoldHeight = settings => {
-	return `.product-images {
-		padding-bottom: ${100 / settings.imageRatio}%;
-	}`;
-};
-
 export const maxContainerWidth = settings => {
 	return `.container {
 		max-width: ${settings.maxWidth}px;
