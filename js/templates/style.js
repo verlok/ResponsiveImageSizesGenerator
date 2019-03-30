@@ -20,8 +20,10 @@ export const maxContainerWidth = settings => {
 	}`;
 };
 
-export const blurryImages = settings => {
-	return settings.blurry ? ".product-images img { width: 100% }" : "";
+export const imagesWidth = settings => {
+	return `.product-images img { 
+		${settings.blurry ? "width" : "max-width"}: 100%;
+	}`;
 };
 
 const mediaQueryTemplate = mediaQ => {

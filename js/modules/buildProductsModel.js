@@ -23,10 +23,9 @@ const getViewportColumnsMap = settings => {
 	return ret;
 };
 
-const getMqForSizes = mediaQuery =>
-	mediaQuery.minWidth ? `(min-width: ${mediaQuery.minWidth}px)` : "";
+const getMqForSizes = width => (width ? `(min-width: ${width}px)` : "");
 
-const getSizeInVw = mediaQuery => {
+const getSizeInVw_blurry = mediaQuery => {
 	const percentage = 100 / mediaQuery.columns;
 	const vwValue = Math.ceil(percentage * 100) / 100;
 	return vwValue + "vw";
@@ -38,10 +37,10 @@ const getSizeInPx = mediaQuery => {
 	return pxValue + "px";
 };
 
-const getSize = mediaQuery => {
+const getSize_blurry = mediaQuery => {
 	if (!mediaQuery.columns) return "100vw";
 	if (!mediaQuery.grow) return getSizeInPx(mediaQuery);
-	return getSizeInVw(mediaQuery);
+	return getSizeInVw_blurry(mediaQuery);
 };
 
 const getSizes_blurry = media =>
@@ -49,20 +48,28 @@ const getSizes_blurry = media =>
 		.slice()
 		.reverse()
 		.map(
-			mediaQuery => getMqForSizes(mediaQuery) + " " + getSize(mediaQuery)
-		);
+			mediaQuery =>
+				getMqForSizes(mediaQuery.minWidth) +
+				" " +
+				getSize_blurry(mediaQuery)
+		)
+		.join();
 
-const getSizes_sharp = settings => {
-	return ""; //TODO: SIZE ME USING ACTUAL IMAGE SIZES AND MEDIA QUERIES
-};
+const getSizes_sharp = viewportColumnsMap =>
+	Object.keys(viewportColumnsMap)
+		.reverse()
+		.map(viewportWidth => {
+			const columnCount = viewportColumnsMap[viewportWidth];
+			const columnSize = parseInt(viewportWidth) / columnCount;
+			return getMqForSizes(viewportWidth) + " " + columnSize + "px";
+		})
+		.join();
 
-const getSizes = settings => {
-	return settings.blurry ? getSizes_blurry(settings.media) : getSizes_sharp();
-};
-
-const getCalculatedImagesWidths = settings => {
-	var viewportColumnsMap = getViewportColumnsMap(settings);
-	var imageWidths = settings.viewportsToOptimizeFor
+const getCalculatedImagesWidths = (
+	viewportsToOptimizeFor,
+	viewportColumnsMap
+) => {
+	var imageWidths = viewportsToOptimizeFor
 		.map(viewport =>
 			Math.round(
 				(viewport.width / viewportColumnsMap[viewport.width]) *
@@ -102,8 +109,22 @@ const getSrc = (position, widths, imageRatio) => {
 
 export default settings => {
 	var products = [];
-	var imagesWidths = getCalculatedImagesWidths(settings);
-	var sizes = getSizes(settings);
+	var viewportColumnsMap = getViewportColumnsMap(settings);
+	var imagesWidths = getCalculatedImagesWidths(
+		settings.viewportsToOptimizeFor,
+		viewportColumnsMap
+	);
+
+	console.log(
+		"viewportColumnsMap",
+		viewportColumnsMap,
+		"imagesWidths",
+		imagesWidths
+	);
+
+	var sizes = settings.blurry
+		? getSizes_blurry(settings.media)
+		: getSizes_sharp(viewportColumnsMap);
 
 	for (let i = 0; i < settings.numberOfProducts; i++) {
 		products.push({

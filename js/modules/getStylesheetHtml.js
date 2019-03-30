@@ -1,12 +1,12 @@
 import {
 	productMediaQueries,
 	maxContainerWidth,
-	blurryImages,
+	imagesWidth,
 	productHoldHeight
 } from "../templates/style.js";
 
 export default settings =>
 	maxContainerWidth(settings) +
 	productHoldHeight(settings) +
-	blurryImages(settings) +
+	imagesWidth(settings) +
 	productMediaQueries(settings.media);
