@@ -23,16 +23,16 @@ const getViewportColumnsMap = settings => {
 	return ret;
 };
 
-const getSizes_media = mediaQuery =>
+const getMqForSizes = mediaQuery =>
 	mediaQuery.minWidth ? `(min-width: ${mediaQuery.minWidth}px)` : "";
 
-const getSize_vw = mediaQuery => {
+const getSizeInVw = mediaQuery => {
 	const percentage = 100 / mediaQuery.columns;
 	const vwValue = Math.ceil(percentage * 100) / 100;
 	return vwValue + "vw";
 };
 
-const getSize_px = mediaQuery => {
+const getSizeInPx = mediaQuery => {
 	if (!mediaQuery.columns) return "100%";
 	const pxValue = Math.ceil(mediaQuery.minWidth / mediaQuery.columns);
 	return pxValue + "px";
@@ -40,17 +40,24 @@ const getSize_px = mediaQuery => {
 
 const getSize = mediaQuery => {
 	if (!mediaQuery.columns) return "100vw";
-	if (!mediaQuery.grow) return getSize_px(mediaQuery);
-	return getSize_vw(mediaQuery);
+	if (!mediaQuery.grow) return getSizeInPx(mediaQuery);
+	return getSizeInVw(mediaQuery);
 };
 
-const getSizes = settings => {
-	return settings.media
+const getSizes_blurry = media =>
+	media
 		.slice()
 		.reverse()
 		.map(
-			mediaQuery => getSizes_media(mediaQuery) + " " + getSize(mediaQuery)
+			mediaQuery => getMqForSizes(mediaQuery) + " " + getSize(mediaQuery)
 		);
+
+const getSizes_sharp = settings => {
+	return ""; //TODO: SIZE ME USING ACTUAL IMAGE SIZES AND MEDIA QUERIES
+};
+
+const getSizes = settings => {
+	return settings.blurry ? getSizes_blurry(settings.media) : getSizes_sharp();
 };
 
 const getCalculatedImagesWidths = settings => {
