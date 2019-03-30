@@ -31,15 +31,16 @@ const getSizeInVw_blurry = mediaQuery => {
 	return vwValue + "vw";
 };
 
-const getSizeInPx = mediaQuery => {
-	if (!mediaQuery.columns) return "100%";
-	const pxValue = Math.ceil(mediaQuery.minWidth / mediaQuery.columns);
+const getSizeInPx = (width, columns) => {
+	if (!columns) return "100%";
+	const pxValue = Math.ceil(width / columns);
 	return pxValue + "px";
 };
 
 const getSize_blurry = mediaQuery => {
 	if (!mediaQuery.columns) return "100vw";
-	if (!mediaQuery.grow) return getSizeInPx(mediaQuery);
+	if (!mediaQuery.grow)
+		return getSizeInPx(mediaQuery.minWidth, mediaQuery.columns);
 	return getSizeInVw_blurry(mediaQuery);
 };
 
@@ -60,8 +61,11 @@ const getSizes_sharp = viewportColumnsMap =>
 		.reverse()
 		.map(viewportWidth => {
 			const columnCount = viewportColumnsMap[viewportWidth];
-			const columnSize = parseInt(viewportWidth) / columnCount;
-			return getMqForSizes(viewportWidth) + " " + columnSize + "px";
+			return (
+				getMqForSizes(viewportWidth) +
+				" " +
+				getSizeInPx(viewportWidth, columnCount)
+			);
 		})
 		.join();
 
